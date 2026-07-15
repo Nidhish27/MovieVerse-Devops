@@ -53,15 +53,16 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh """
-                    ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/.ssh/id_ed25519 ubuntu@${K8S_SERVER} << EOF
+                sh '''
+                    ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/.ssh/id_ed25519 ubuntu@13.126.196.81 <<EOF
                     set -e
                     cd ~/MovieVerse-Devops
                     git pull origin main
                     kubectl rollout restart deployment movieverse
                     kubectl rollout status deployment/movieverse
+                    exit
                     EOF
-                """
+                    '''
             }
         }
 
