@@ -1,0 +1,580 @@
+/* ==========================
+   MovieVerse
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0d1117;
+    color:#fff;
+}
+
+/* ==========================
+   Navbar
+========================== */
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 40px;
+    background:#111827;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 2px 15px rgba(0,0,0,.4);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:#00d26a;
+}
+
+.search-container{
+    display:flex;
+    gap:10px;
+}
+
+.search-container input{
+    width:260px;
+    padding:12px 18px;
+    border:none;
+    border-radius:30px;
+    outline:none;
+    font-size:15px;
+}
+
+.search-container button{
+    width:50px;
+    border:none;
+    border-radius:50%;
+    background:#00d26a;
+    cursor:pointer;
+    font-size:18px;
+    transition:.3s;
+}
+
+.search-container button:hover{
+    transform:scale(1.08);
+}
+
+/* ==========================
+   Hero Banner
+========================== */
+
+#hero{
+    height:70vh;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:flex-end;
+}
+
+.overlay{
+    width:100%;
+    padding:60px;
+    background:linear-gradient(
+        transparent,
+        rgba(0,0,0,.92)
+    );
+}
+
+.featured{
+    display:inline-block;
+    background:#00d26a;
+    color:#000;
+    padding:6px 15px;
+    border-radius:20px;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+#heroTitle{
+    font-size:56px;
+    margin-bottom:15px;
+}
+
+.movie-details{
+    display:flex;
+    gap:15px;
+    margin-bottom:20px;
+    color:#00d26a;
+    font-weight:600;
+}
+
+#heroOverview{
+    max-width:700px;
+    line-height:1.8;
+    color:#ddd;
+}
+
+/* ==========================
+   Sections
+========================== */
+
+section{
+    padding:40px;
+}
+
+section h2{
+    margin-bottom:25px;
+    color:#00d26a;
+    font-size:30px;
+}
+
+/* ==========================
+   Movie Grid
+========================== */
+
+.movie-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:25px;
+}
+
+/* ==========================
+   Movie Card
+========================== */
+
+.card{
+    background:#161b22;
+    border-radius:12px;
+    overflow:hidden;
+    transition:.35s;
+    box-shadow:0 0 10px rgba(0,0,0,.4);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 20px rgba(0,210,106,.45);
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.info{
+    padding:15px;
+}
+
+.info h3{
+    font-size:18px;
+    margin-bottom:10px;
+    min-height:48px;
+}
+
+.info p{
+    color:#ccc;
+    margin-bottom:8px;
+    font-size:14px;
+}
+
+.info button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#00d26a;
+    color:#000;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.info button:hover{
+    background:#00b85b;
+}
+
+/* ==========================
+   Footer
+========================== */
+
+footer{
+    margin-top:60px;
+    padding:40px;
+    text-align:center;
+    background:#111827;
+}
+
+footer h3{
+    color:#00d26a;
+    margin-bottom:10px;
+}
+
+footer p{
+    color:#bbb;
+    margin:10px 0;
+}
+
+.footer-links{
+    margin:20px 0;
+}
+
+.footer-links a{
+    color:#00d26a;
+    text-decoration:none;
+    margin:0 12px;
+    transition:.3s;
+}
+
+.footer-links a:hover{
+    color:#fff;
+}
+
+.copyright{
+    font-size:14px;
+    color:#777;
+}
+
+/* ==========================
+   Scrollbar
+========================== */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111827;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#00d26a;
+    border-radius:20px;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:900px){
+
+    nav{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .search-container{
+        width:100%;
+    }
+
+    .search-container input{
+        width:100%;
+    }
+
+    #heroTitle{
+        font-size:38px;
+    }
+
+    #heroOverview{
+        max-width:100%;
+    }
+
+    .overlay{
+        padding:30px;
+    }
+
+    section{
+        padding:25px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .movie-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:15px;
+    }
+
+    .card img{
+        height:240px;
+    }
+
+    #hero{
+        height:60vh;
+    }
+
+    #heroTitle{
+        font-size:30px;
+    }
+
+}
+
+/* ==========================================
+   REVIEW & FAVORITES
+========================================== */
+
+.info button{
+    margin-top:10px;
+}
+
+.info button:nth-child(4){
+    background:#00d26a;
+    color:#000;
+}
+
+.info button:nth-child(5){
+    background:#ff4757;
+    color:white;
+}
+
+.info button:nth-child(6){
+    background:#f1c40f;
+    color:black;
+}
+
+.info button:hover{
+    opacity:.9;
+}
+
+/* ==========================================
+   REVIEW MODAL
+========================================== */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(0,0,0,.8);
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+    animation:fadeIn .3s ease;
+
+}
+
+.modal-content{
+
+    background:#161b22;
+
+    width:600px;
+
+    max-width:95%;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    box-shadow:0 0 25px rgba(0,0,0,.5);
+
+}
+
+#closeReview{
+
+    float:right;
+
+    font-size:32px;
+
+    cursor:pointer;
+
+    color:white;
+
+}
+
+#closeReview:hover{
+
+    color:#ff4757;
+
+}
+
+#reviewMovieTitle{
+
+    margin-bottom:20px;
+
+}
+
+.stars{
+
+    margin:15px 0;
+
+}
+
+.star{
+
+    font-size:35px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.star:hover{
+
+    transform:scale(1.25);
+
+}
+
+#reviewText{
+
+    width:100%;
+
+    height:120px;
+
+    resize:none;
+
+    margin-top:20px;
+
+    border:none;
+
+    outline:none;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    background:#222;
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+#saveReview{
+
+    margin-top:20px;
+
+    width:100%;
+
+    background:#00d26a;
+
+    color:black;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    font-size:16px;
+
+}
+
+#saveReview:hover{
+
+    background:#00b85b;
+
+}
+
+#allReviews{
+
+    margin-top:30px;
+
+    max-height:300px;
+
+    overflow-y:auto;
+
+}
+
+.review{
+
+    background:#222;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    border-radius:10px;
+
+    border-left:4px solid #00d26a;
+
+}
+
+.review h3{
+
+    color:#ffd700;
+
+    margin-bottom:10px;
+
+}
+
+.review p{
+
+    color:#ddd;
+
+    line-height:1.5;
+
+}
+
+.favorite-active{
+
+    background:#ff4757 !important;
+
+    color:white !important;
+
+}
+
+/* ==========================================
+   SCROLLBAR INSIDE REVIEW
+========================================== */
+
+#allReviews::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+#allReviews::-webkit-scrollbar-thumb{
+
+    background:#00d26a;
+
+    border-radius:20px;
+
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.95);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
