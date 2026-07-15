@@ -53,22 +53,28 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh '''
-                    ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/.ssh/id_ed25519 ubuntu@13.126.196.81 <<EOF
-                    set -e
-                    cd ~/MovieVerse-Devops
-                    git pull origin main
-                    kubectl rollout restart deployment movieverse
-                    kubectl rollout status deployment/movieverse
-                    exit
-                    EOF
-                    '''
+                sh """
+                    ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/.ssh/id_ed25519 ubuntu@${K8S_SERVER} \
+                    "cd ~/MovieVerse-Devops && \
+                    git pull origin main && \
+                    kubectl rollout restart deployment movieverse && \
+                    kubectl rollout status deployment/movieverse"
+                """
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                sh """
+                    ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/.ssh/id_ed25519 ubuntu@${K8S_SERVER} \
+                    "kubectl get pods && kubectl get svc"
+                """
             }
         }
 
         stage('Cleanup') {
             steps {
-                sh 'docker image prune -af'
+                sh 'docker image prune -af || true'
             }
         }
 
@@ -81,7 +87,7 @@ pipeline {
         }
 
         failure {
-            echo 'Pipeline Failed!'
+            echo '❌ Pipeline Failed!'
         }
 
         always {
