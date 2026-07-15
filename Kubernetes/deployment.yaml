@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: movieverse
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: movieverse
+
+  template:
+    metadata:
+      labels:
+        app: movieverse
+
+    spec:
+      containers:
+
+      - name: movieverse
+
+        image: nidhish27/movieverse:latest
+
+        imagePullPolicy: Always
+
+        ports:
+
+        - containerPort: 80
